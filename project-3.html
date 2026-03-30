@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project 03 — Old Amsterdam | Koen Claassen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --black: #0e0e0e; --off-white: #f5f2ee; --warm-mid: #c8b99a; --accent: #3a3a2e; --muted: #8a8478; --font: 'Roboto', sans-serif; }
+    body { background: var(--off-white); color: var(--black); font-family: var(--font); font-weight: 300; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 3rem; background: rgba(245,242,238,0.92); backdrop-filter: blur(8px); }
+    .nav-logo { font-size: 1rem; font-weight: 900; letter-spacing: 0.1em; text-transform: uppercase; color: var(--black); text-decoration: none; }
+    .nav-back { font-size: 0.72rem; font-weight: 300; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); text-decoration: none; display: inline-flex; align-items: center; gap: 0.75rem; transition: color 0.2s; }
+    .nav-back::before { content: '←'; }
+    .nav-back:hover { color: var(--black); }
+    .project-hero { min-height: 80vh; background: #1a1a14; display: flex; flex-direction: column; justify-content: flex-end; padding: 8rem 3rem 5rem; position: relative; overflow: hidden; }
+    .project-hero::before { content: '03'; position: absolute; top: 4rem; right: 3rem; font-size: 18rem; font-weight: 900; color: rgba(200,185,154,0.06); line-height: 1; pointer-events: none; }
+    .project-category { font-size: 0.68rem; font-weight: 300; letter-spacing: 0.22em; text-transform: uppercase; color: var(--warm-mid); margin-bottom: 1.5rem; opacity: 0; animation: fadeUp 0.8s 0.2s forwards; }
+    .project-title { font-size: clamp(3rem, 6vw, 7rem); font-weight: 900; line-height: 0.95; letter-spacing: -0.04em; color: var(--off-white); opacity: 0; animation: fadeUp 0.9s 0.35s forwards; }
+    .project-title span { font-weight: 100; display: block; color: var(--warm-mid); }
+    .project-meta { display: flex; gap: 4rem; margin-top: 4rem; opacity: 0; animation: fadeUp 0.9s 0.5s forwards; flex-wrap: wrap; }
+    .meta-label { font-size: 0.65rem; font-weight: 300; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 0.4rem; }
+    .meta-value { font-size: 0.9rem; font-weight: 500; color: var(--off-white); }
+    .project-body { max-width: 860px; margin: 0 auto; padding: 7rem 3rem; }
+    .project-image-placeholder { width: 100%; aspect-ratio: 16/9; background: linear-gradient(135deg, #1a1a14 0%, #c8b99a 100%); display: flex; align-items: center; justify-content: center; margin-bottom: 5rem; }
+    .project-image-placeholder::after { content: 'Afbeelding toevoegen'; font-size: 0.72rem; font-weight: 300; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.5); }
+    .project-intro { font-size: clamp(1.3rem, 2.2vw, 1.9rem); font-weight: 300; line-height: 1.5; color: var(--accent); margin-bottom: 4rem; letter-spacing: -0.01em; }
+    .project-text { font-size: 1rem; font-weight: 300; line-height: 1.9; color: var(--accent); }
+    .project-text p { margin-bottom: 1.5rem; }
+    .project-text h3 { font-size: 1.3rem; font-weight: 700; letter-spacing: -0.01em; margin: 3rem 0 1rem; color: var(--black); }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 3.5rem 0; }
+    .project-tag { border: 1px solid rgba(14,14,14,0.2); padding: 0.45rem 1rem; font-size: 0.72rem; font-weight: 300; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+    .back-btn { display: inline-flex; align-items: center; gap: 1rem; font-size: 0.78rem; font-weight: 300; letter-spacing: 0.15em; text-transform: uppercase; color: var(--black); text-decoration: none; margin-top: 4rem; border-top: 1px solid rgba(14,14,14,0.15); padding-top: 2rem; width: 100%; }
+    .back-btn::before { content: '←'; }
+    .back-btn:hover { color: var(--muted); }
+    footer { background: var(--black); color: var(--off-white); padding: 2.5rem 3rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.72rem; font-weight: 300; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.7; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(25px); } to { opacity: 1; transform: none; } }
+    @media (max-width: 700px) { nav { padding: 1.2rem 1.5rem; } .project-hero { padding: 7rem 1.5rem 3rem; } .project-hero::before { font-size: 8rem; } .project-body { padding: 4rem 1.5rem; } .project-meta { gap: 2rem; } }
+  </style>
+</head>
+<body>
+  <nav>
+    <a class="nav-logo" href="index.html">KC</a>
+    <a class="nav-back" href="index.html">Terug naar overzicht</a>
+  </nav>
+  <header class="project-hero">
+    <p class="project-category">Project 03 &nbsp;&mdash;&nbsp; Innovatie &amp; Strategie</p>
+    <h1 class="project-title">Old Amsterdam<span>Innovation Readiness Assessment</span></h1>
+    <div class="project-meta">
+      <div><p class="meta-label">Opdrachtgever</p><p class="meta-value">Old Amsterdam</p></div>
+      <div><p class="meta-label">Rol</p><p class="meta-value">Innovatie-analist &amp; Strateeg</p></div>
+      <div><p class="meta-label">Context</p><p class="meta-value">Avans Hogeschool Den Bosch</p></div>
+    </div>
+  </header>
+  <main class="project-body">
+    <div class="project-image-placeholder"></div>
+    <p class="project-intro">Een volledige Innovation Readiness Assessment Scan voor Old Amsterdam, inclusief macro-analyse, systeemanalyse en strategische aanbevelingen.</p>
+    <div class="project-text">
+      <p>In dit project heb ik een Innovation Readiness Assessment Scan uitgevoerd voor Old Amsterdam. Het doel was te beoordelen in hoeverre de organisatie klaar is voor innovatie en welke stappen nodig zijn om toekomstbestendig te blijven in een veranderende markt.</p>
+      <h3>Macro-analyse</h3>
+      <p>Via een uitgebreide macro-analyse op basis van het DESTEP-model zijn de externe trends en ontwikkelingen in kaart gebracht die relevant zijn voor Old Amsterdam. Denk aan veranderend consumentengedrag, duurzaamheidseisen, technologische ontwikkelingen in de voedingsindustrie en verschuivende marktdynamieken.</p>
+      <h3>Systeemanalyse &amp; Causal Loop Diagrams</h3>
+      <p>Met behulp van causal loop diagrams (CLD's) in Miro zijn de onderlinge verbanden tussen interne en externe factoren visueel gemaakt. Dit gaf inzicht in de complexe wisselwerkingen die de innovatiecapaciteit van de organisatie beinvloeden.</p>
+      <h3>Strategische aanbevelingen</h3>
+      <p>Op basis van de analyses zijn concrete strategische aanbevelingen geformuleerd, ondersteund door een toekomst- en impactgap-analyse. Deze aanbevelingen zijn verwerkt in een verantwoordingsverslag en gepresenteerd aan de opdrachtgever.</p>
+    </div>
+    <div class="project-tags">
+      <span class="project-tag">Innovation Readiness</span>
+      <span class="project-tag">DESTEP</span>
+      <span class="project-tag">Causal Loop Diagram</span>
+      <span class="project-tag">Toekomstanalyse</span>
+      <span class="project-tag">Miro</span>
+      <span class="project-tag">Strategie</span>
+    </div>
+    <a class="back-btn" href="index.html">Terug naar alle projecten</a>
+  </main>
+  <footer>
+    <span>&copy; 2025 Koen Claassen</span>
+    <span>Business Innovator</span>
+  </footer>
+</body>
+</html>
